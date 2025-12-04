@@ -22,7 +22,7 @@ void print(int times,int length,string left,char filling,string right,string mid
 	{
 		cout<<left;
 		if(middle.length()==0) for(int b=0;b<length-left.length()-right.length();b++) cout<<filling;
-		else 
+		else
 		{
 			for(int b=0;b<floor((length-middle.length())/2.0)-left.length();b++) cout<<filling;
 			cout<<middle;
@@ -56,7 +56,7 @@ int keydetect()
         }
     }
 }
-string replace(int type,int input)
+string swap(int type,int input)
 {
 	switch(type)
 	{
@@ -88,13 +88,13 @@ void messageset(int type,int input1,int input2)
 {
 	switch(type)
 	{
-		case 1:message=text[53]+to_string(input1)+text[54]+replace(10,input2)+text[55];break;
+		case 1:message=text[53]+to_string(input1)+text[54]+swap(10,input2)+text[55];break;
 		case 2:message=text[56]+to_string((input1+1)/10)+to_string((input1+1)%10)+text[57]+to_string(input2)+text[58];break;
 		case 3:message=text[59];break;
 		case 4:if(!(playertype[dealer]==2&&input1==0)) message=text[60]+to_string(input1)+text[61];break;
 		case 5:message=text[62];break;
 		case 6:message=text[65];break;
-		case 7:message=text[66]+replace(10,input1)+text[67];break;
+		case 7:message=text[66]+swap(10,input1)+text[67];break;
 		case 8:message=text[56]+to_string((input1+1)/10)+to_string((input1+1)%10)+text[80];break;
 	}
 }
@@ -113,12 +113,12 @@ bool judge(int cardcode)
 	if(drawtype==2) if(cardcode==514) return 1;
 	return 0;
 }
-void home_page();
+void home();
 void general_menu(bool special);
 void advance_menu(bool special);
 void archivemanege();
 void prepare(bool advance,bool special);
-void special_menu();
+void special();
 void game(bool special);
 void pause();
 void discard(int playerID,int cardcode);
@@ -132,29 +132,29 @@ void display()
 	print(1,120,"+-"+text[81],'-',"+","",1);
 	print(1,120,"|",' ',"|","",1);
 	cout<<"|  ";print(6,19,"  /",'-',"\\  ","",0);cout<<"  |"<<endl;
-	cout<<"|  ";for(int a=0;a<6;a++) print(1,19,"  |"+replace(1,dealer-a),' ',text[20]+"0"+to_string(a+1)+"|  ","",0); cout<<"  |"<<endl;
-	cout<<"|  ";for(int a=0;a<6;a++) print(1,19,"  |",' ',"|  ",replace(8,playertype[a]),0); cout<<"  |"<<endl;
-	cout<<"|  ";for(int a=0;a<6;a++) print(1,19,"  |",' ',"|  ",replace(12,a),0); cout<<"  |"<<endl;
+	cout<<"|  ";for(int a=0;a<6;a++) print(1,19,"  |"+swap(1,dealer-a),' ',text[20]+"0"+to_string(a+1)+"|  ","",0); cout<<"  |"<<endl;
+	cout<<"|  ";for(int a=0;a<6;a++) print(1,19,"  |",' ',"|  ",swap(8,playertype[a]),0); cout<<"  |"<<endl;
+	cout<<"|  ";for(int a=0;a<6;a++) print(1,19,"  |",' ',"|  ",swap(12,a),0); cout<<"  |"<<endl;
 	cout<<"|  ";print(6,19,"  \\",'-',"/  ","",0);cout<<"  |"<<endl;
 	print(1,120,"|",' ',"|","",1);
 	print(1,24,"|",' '," ","",0);print(1,72,"/",'-',"\\","",0);print(1,24," ",' ',"|","",1);
 	print(1,25,"|    /",'-',"\\    |","",0);print(1,70," ",' '," "," ",0);print(1,25,"|    /",'-',"\\    |","",1);
-	print(1,25,"|    |"+replace(1,dealer-13),' ',text[20]+to_string(14)+"|    |","",0);for(int a=0;a<3;a++){print(1,24-2*(a%2)," ",' '," ",text[28+a]+": "+replace(9+a,previous),0);}print(1,25,"|    |"+replace(1,dealer-6),' ',text[20]+"0"+to_string(7)+"|    |","",1);//24,22,24
-	print(1,25,"|    |",' ',"|    |",replace(8,playertype[13]),0);print(1,70," ",' '," "," ",0);print(1,25,"|    |",' ',"|    |",replace(8,playertype[6]),1);
-	print(1,25,"|    |",' ',"|    |",replace(12,13),0);print(1,70," ",' '," ",message,0);print(1,25,"|    |",' ',"|    |",replace(12,6),1);
+	print(1,25,"|    |"+swap(1,dealer-13),' ',text[20]+to_string(14)+"|    |","",0);for(int a=0;a<3;a++){print(1,24-2*(a%2)," ",' '," ",text[28+a]+": "+swap(9+a,previous),0);}print(1,25,"|    |"+swap(1,dealer-6),' ',text[20]+"0"+to_string(7)+"|    |","",1);//24,22,24
+	print(1,25,"|    |",' ',"|    |",swap(8,playertype[13]),0);print(1,70," ",' '," "," ",0);print(1,25,"|    |",' ',"|    |",swap(8,playertype[6]),1);
+	print(1,25,"|    |",' ',"|    |",swap(12,13),0);print(1,70," ",' '," ",message,0);print(1,25,"|    |",' ',"|    |",swap(12,6),1);
 	print(1,25,"|    \\",'-',"/    |","",0);print(1,70," ",' '," "," ",0);print(1,25,"|    \\",'-',"/    |","",1);
 	print(1,24,"|",' '," ","",0);print(1,72,"\\",'-',"/","",0);print(1,24," ",' ',"|","",1);
 	print(1,120,"|",' ',"|","",1);
 	cout<<"|  ";print(6,19,"  /",'-',"\\  ","",0);cout<<"  |"<<endl;
-	cout<<"|  ";for(int a=12;a>6;a--) print(1,19,"  |"+replace(1,dealer-a),' ',text[20]+to_string((a+1)/10)+to_string((a+1)%10)+"|  ","",0); cout<<"  |"<<endl;
-	cout<<"|  ";for(int a=12;a>6;a--) print(1,19,"  |",' ',"|  ",replace(8,playertype[a]),0); cout<<"  |"<<endl;
-	cout<<"|  ";for(int a=12;a>6;a--) print(1,19,"  |",' ',"|  ",replace(12,a),0); cout<<"  |"<<endl;
+	cout<<"|  ";for(int a=12;a>6;a--) print(1,19,"  |"+swap(1,dealer-a),' ',text[20]+to_string((a+1)/10)+to_string((a+1)%10)+"|  ","",0); cout<<"  |"<<endl;
+	cout<<"|  ";for(int a=12;a>6;a--) print(1,19,"  |",' ',"|  ",swap(8,playertype[a]),0); cout<<"  |"<<endl;
+	cout<<"|  ";for(int a=12;a>6;a--) print(1,19,"  |",' ',"|  ",swap(12,a),0); cout<<"  |"<<endl;
 	cout<<"|  ";print(6,19,"  \\",'-',"/  ","",0);cout<<"  |"<<endl;
 	print(1,120,"|",' ',"|","",1);
 	print(1,120,"+",'-',"+","",1);
-	print(1,120,"|",' ',"|",replace(13,dealer),1);
-	print(1,10,"|",' '," ","[←]",0);for(int a=1;a<11;a++) print(1,10," ",' '," ","["+replace(14,a)+"]",0); print(1,10," ",' ',"|","[→]",1);
-	print(1,10,"|",' '," ",text[63],0);for(int a=0;a<10;a++) print(1,10," ",' '," ",replace(10,playertype[dealer]==1?holdcard[dealer][page*10+a]:999),0); print(1,10," ",' ',"|",text[64],1);
+	print(1,120,"|",' ',"|",swap(13,dealer),1);
+	print(1,10,"|",' '," ","[←]",0);for(int a=1;a<11;a++) print(1,10," ",' '," ","["+swap(14,a)+"]",0); print(1,10," ",' ',"|","[→]",1);
+	print(1,10,"|",' '," ",text[63],0);for(int a=0;a<10;a++) print(1,10," ",' '," ",swap(10,playertype[dealer]==1?holdcard[dealer][page*10+a]:999),0); print(1,10," ",' ',"|",text[64],1);
 	print(1,120,"|",' ',"|","",1);
 	print(1,120,"|",' ',"|","[A] "+text[49]+"  [S] "+text[50]+"  [D] "+text[51],1);
 	print(1,120,"|",' ',"|","[Space]"+text[52],1);
@@ -165,10 +165,10 @@ int main()
 	srand(time(0));
 	system("mode con cols=121 lines=31");
 	SetWindowLongPtrA(GetConsoleWindow(), GWL_STYLE, GetWindowLongPtrA(GetConsoleWindow(),GWL_STYLE)& ~WS_SIZEBOX & ~WS_MAXIMIZEBOX);
-	home_page();
+	home();
 	return 0;
 }
-void home_page()
+void home()
 {
 	while(true)
 	{
@@ -212,8 +212,8 @@ void general_menu(bool special)
 		for(int a=8;a<12;a++)
 		{
 			print(3,120,"|",' ',"|","",1);
-			print(1,60,"|",' ',replace(1,a-8-optnum)+text[a]+":","",0);
-			print(1,15,replace(2,a-8-optnum),' ',replace(3,a-8-optnum),replace(a-4,optclass[a-8]),0);
+			print(1,60,"|",' ',swap(1,a-8-optnum)+text[a]+":","",0);
+			print(1,15,swap(2,a-8-optnum),' ',swap(3,a-8-optnum),swap(a-4,optclass[a-8]),0);
 			print(1,45," ",' ',"|","",1);
 		}
 		print(3,120,"|",' ',"|","",1);
@@ -246,14 +246,14 @@ void advance_menu(bool special)
 		print(2,120,"|",' ',"|","",1);
 		for(int a=1;a<8;a++)
 		{
-			print(1,20,"|",' ',replace(1,a-optnum-1)+text[20]+"0"+to_string(a)+":","",0);
-			print(1,15,replace(2,a-optnum-1),' ',replace(3,a-optnum-1),replace(8,optadvan[a-1]),0);
+			print(1,20,"|",' ',swap(1,a-optnum-1)+text[20]+"0"+to_string(a)+":","",0);
+			print(1,15,swap(2,a-optnum-1),' ',swap(3,a-optnum-1),swap(8,optadvan[a-1]),0);
 			print(1,5," ",' ',"|","",0);
-			print(1,20,"|",' ',replace(1,a-optnum+6)+text[20]+to_string((a+7)/10)+to_string((a+7)%10)+":","",0);
-			print(1,15,replace(2,a-optnum+6),' ',replace(3,a-optnum+6),replace(8,optadvan[a+6]),0);
+			print(1,20,"|",' ',swap(1,a-optnum+6)+text[20]+to_string((a+7)/10)+to_string((a+7)%10)+":","",0);
+			print(1,15,swap(2,a-optnum+6),' ',swap(3,a-optnum+6),swap(8,optadvan[a+6]),0);
 			print(1,5," ",' ',"|","",0);
-			if(a==3) {print(1,20,"|",' ',replace(1,optnum-14)+text[10]+":","",0);print(1,15,replace(2,optnum-14),' ',replace(3,optnum-14),replace(6,optadvan[14]),0);print(1,5," ",' ',"|","",1);}
-			else if(a==5) {print(1,20,"|",' ',replace(1,optnum-15)+text[11]+":","",0);print(1,15,replace(2,optnum-15),' ',replace(3,optnum-15),replace(7,optadvan[15]),0);print(1,5," ",' ',"|","",1);}
+			if(a==3) {print(1,20,"|",' ',swap(1,optnum-14)+text[10]+":","",0);print(1,15,swap(2,optnum-14),' ',swap(3,optnum-14),swap(6,optadvan[14]),0);print(1,5," ",' ',"|","",1);}
+			else if(a==5) {print(1,20,"|",' ',swap(1,optnum-15)+text[11]+":","",0);print(1,15,swap(2,optnum-15),' ',swap(3,optnum-15),swap(7,optadvan[15]),0);print(1,5," ",' ',"|","",1);}
 			else print(1,40,"|",' ',"|","",1);
 			for(int b=0;b<2;b++) if(a!=7){print(3,40,"|",' ',"|","",0);cout<<endl;}
 		}
@@ -272,7 +272,7 @@ void advance_menu(bool special)
 		}
 	}
 }
-void special_menu()
+void special()
 {
 
 }
@@ -434,7 +434,6 @@ void prepare(bool advance,bool special)
 	if(special==1)
 	{
 		optspe[0]=1;
-		special_menu();
 	}
 	addcard(cardset);
 	for(int a=0;a<14;a++) if(playertype[a]!=0) dealing(a,7);
@@ -629,7 +628,7 @@ void ending()
 		print(1,120,"+",'-',"+","",1);
 		switch(keydetect())
 		{
-			case 'A':home_page();break;
+			case 'A':home();break;
 			case 'S':prepare(againtype,optspe[0]);break;
 		}
 	}
@@ -656,7 +655,7 @@ void pause()
 	{
 		switch(keydetect())
 		{
-			case 'A':home_page();break;
+			case 'A':home();break;
 			case 'S':prepare(againtype,optspe[0]);break;
 			case 'D':return ;
 		}
